@@ -61,6 +61,7 @@ print(base['Fare'].isna().groupby(base['Pclass']).sum())
 print(valid['Fare'].isna().groupby(valid['Pclass']).sum())
 
 ## Encoding fares to a multi-level factor which increases with fare cost
+base.Fare.fillna(0, inplace=True)
 base.loc[(base['Fare'] <= 8), 'Fare'] = 0
 base.loc[(base['Fare'] > 8) & (base['Fare'] <= 16), 'Fare'] = 1
 base.loc[(base['Fare'] > 16) & (base['Fare'] <= 30), 'Fare'] = 2
@@ -97,16 +98,15 @@ for col in base.columns:
     if base[col].isnull().mean()*100>40:
         base.drop(col,axis=1,inplace=True)
 
+## Imputing any remaining values by mean for numbers, and mode for objects
+f = lambda x: x.median() if np.issubdtype(x.dtype, np.number) else x.mode().iloc[0]
+base = base.fillna(base.groupby('SibSp').transform(f))
+
 ## Encoding categorical variables with labels
 le=LabelEncoder()
 for col in base.columns:
     if base[col].dtypes == object:
         base[col]= le.fit_transform(base[col])
-
-## Imputing any remaining values by mean for numbers, and mode for objects
-f = lambda x: x.median() if np.issubdtype(x.dtype, np.number) else x.mode().iloc[0]
-base = base.fillna(base.groupby('SibSp').transform(f))
-
 
 ## Validation Data Cleaning
 ## We apply all of the same steps we used for the testing data
@@ -222,7 +222,7 @@ val_data = MyDataset(x_val)
 ## Batch-size determines how many row tensors are passed to the model in each epoch.
 ## Setting shuffle to true, ensures that each batch is a random sample.
 train_loader = DataLoader(dataset = train_data, batch_size = 150, shuffle=True)
-val_loader = DataLoader(dataset=val_data, batch_size = 100, shuffle = True)
+val_loader = DataLoader(dataset = val_data, batch_size = 100, shuffle = True)
 
 
 ## ---------------- training the model  ---------------- ##
