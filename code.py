@@ -229,7 +229,7 @@ val_loader = DataLoader(dataset = val_data, batch_size = 100, shuffle = True)
 
 loss_list = []                      ## We initialize two empty lists to append loss from each epoch to
 val_loss_list = []
-for epoch in range(600):            ## By inputing the range(x), we are choosing 'x' epochs to iterate over the training data
+for epoch in range(300):            ## By inputing the range(x), we are choosing 'x' epochs to iterate over the training data
     for x,y in train_loader:        ## Obtain samples for each batch
         optimizer.zero_grad()       ## Zero out the gradient
         y = y.unsqueeze(1)          ## Take targets tensor of shape [150] and coerces it to [150,1] 
