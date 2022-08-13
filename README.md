@@ -7,7 +7,7 @@
 - It is a type of machine learning process, called deep learning, that uses interconnected nodes or neurons in a layered structure that resembles the human brain. 
 - It creates an adaptive system that computers use to learn from their mistakes and improve continuously.
 
-![A 1-Hidden Layer NN with two neurons](Images/fig1.png)
+![A 1-Hidden Layer NN with two neurons](Images/Fig1.png)
 
 ## What are the building blocks of a nn in PyTorch?
 - Tensors: A tensor is a matrix-like data structure that is used across deep learning frameworks. Tensor operations are fundamental to PyTorch, and are used for all data.
