@@ -27,3 +27,24 @@
 > to the model as a deep learning model.
 
 ## Problem Description and Data
+In April of 1912, one of the most infamous naval disasters in modern history occured, when the RMS Titanic struck an iceberg and began to sink. Tragically, there were not enough life boats for the majority of the passengers aboard. 1502 of the 2224 people aboard the ship lost thier lives in the ensuing chaos. 
+
+Seemingly, there were factors that made it more likely for an individual to survive the disaster. For example, women and children were prioritized to get space on the life boats. Given data on socio-economic factors, can we predict who would have survived in some sort of systematic fashion?
+
+That is a the goal of the competition. We are given two csv files with missing and messy data. The training set has records of 891 individuals and survival ground truth. The testing set has 418 records, and we are tasked with making a survival prediction for each individual.
+
+## Features
+| Feature | Description |
+| ------ | ------ |
+| 'Survived' | Binary outcome of survival |
+| 'PassengerID' | Unique identifier for each passenger |
+| 'Pclass' | What class ticket did the individual have (1st,2nd,3rd)|
+| 'Sex' | 'Male' or 'Female' records |
+| 'Age' | Age in years|
+| 'Sibsp' | # of siblings/spouses aboard |
+| 'Parch' | # of parents/children aboard |
+| 'Fare' | How much the ticket costed in 1912 GBP |
+| 'Embarked' | Which port did the individual embark from? |
+| 'Cabin' | If the individual had a cabin, what cabin was it? |
+| 'Has_Cabin' | Did the individual have a cabin? |
+| 'Title' | If the individual has a title preceding thier name; ranked by rarity |
