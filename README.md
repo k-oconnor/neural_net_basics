@@ -106,6 +106,8 @@ Note how at the end of the constructor, we initialize the model with our desired
 
 ![Training Results](Images/Fig2.png)
 
+As we see in the graph above, loss steadily decreases as we approach 100 epochs. We then observe loss flucuating relatively extremely. This tipping point is evidence of overfitting past 100 epochs, as the network begins to chase changes that are random variation in the batches. So, we would most likely choose to re-run the model with 100 epochs to get the most reliable results on the testing data.
+
 ## Predicting Results
 ![Making Predictions](Images/code8.png)
 
