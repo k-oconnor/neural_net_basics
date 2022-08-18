@@ -72,7 +72,7 @@ After completion of preprocessing, we can break down the process of model constr
 
 ## Dataset Constructor and Loading
 
-Code for processing data samples can get messy and hard to maintain; we ideally want our dataset code to be decoupled from our model training code for better readability and modularity. PyTorch provides two data primitives: torch.utils.data.DataLoader and torch.utils.data.Dataset that allow you to use pre-loaded datasets as well as your own data. Dataset stores the samples and their corresponding labels, and DataLoader wraps an iterable around the Dataset to enable easy access to the samples. The dataset class constructor requires at a minimum the methods " __getitem__" and "__len__".
+Code for processing data samples can get messy and hard to maintain; we ideally want our dataset code to be decoupled from our model training code for better readability and modularity. PyTorch provides two data primitives: torch.utils.data.DataLoader and torch.utils.data.Dataset that allow you to use pre-loaded datasets as well as your own data. Dataset stores the samples and their corresponding labels, and DataLoader wraps an iterable around the Dataset to enable easy access to the samples. The dataset class constructor requires at a minimum the methods " __getitem__" and "__len__". Apart from applying these methods, the constructor is also used for converting the data to tensors.
 
 ![Dataset Constructor](Images/code3.png)
 
@@ -82,6 +82,17 @@ After splitting the data, we create the data primitives 'DataLoader' after apply
 
 ![Creating the data loaders](Images/code5.png)
 
-
 ## Model Constructor
+The model constructor is where we make our specifications for the neural network. First, we make our linear layers. The forward method can be called to make a prediction. There are three typical activation functions 'relu, tanh, sigmoid'. Relu is useful, as sigmoid and tanh are bounded <|1|, so as multiple gradients are multiplied together, the number doesn't neccesarily approach 0. We apply the relu function in the hidden layers, and use a sigmoid activation in the output layer to make predictions. Passing the linear function through the sigmoid activation will result in output being the probability of survival, analogous to a logistic regression. Note how there are two hidden layers. We can generalize this construction to an arbitrary number of layers, by adding more linear functions and activations to the __init__ and the forward pass method. 
 
+Reminder: A neuron is a combination of a linear function and an activation
+- Input dimension is the number of explanatory variables
+- H1 is the number of neurons in the first hidden layer
+- H2 is the number of neurons in the second hidden layer
+- Output dimesion is the number of classes we are predicting (In this case, it is binary)
+
+![Model Specification](Images/code5.png)
+
+Note how at the end of the constructor, we initialize the model with our desired specification. The number of neurons and hidden layers needs to be carefully tuned. Having too many neurons and layers can lead to extreme overfitting. Having too few will cause our paramter estimates to underfit. It is important to simultaneously train and validate to find the sweet spot. There is no perfect answer, and there is a lot of room for intuition. The model as specified takes the following form.
+
+![Model Initialization](Images/Fig3.png)
