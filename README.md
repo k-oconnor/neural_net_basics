@@ -91,7 +91,7 @@ Reminder: A neuron is a combination of a linear function and an activation
 - H2 is the number of neurons in the second hidden layer
 - Output dimesion is the number of classes we are predicting (In this case, it is binary)
 
-![Model Specification](Images/code5.png)
+![Model Specification](Images/code4.png)
 
 Note how at the end of the constructor, we initialize the model with our desired specification. The number of neurons and hidden layers needs to be carefully tuned. Having too many neurons and layers can lead to extreme overfitting. Having too few will cause our paramter estimates to underfit. It is important to simultaneously train and validate to find the sweet spot. There is no perfect answer, and there is a lot of room for intuition. The model as specified takes the following form.
 
