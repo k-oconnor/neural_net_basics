@@ -34,6 +34,9 @@ Seemingly, there were factors that made it more likely for an individual to surv
 That is a the goal of the competition. We are given two csv files with missing and messy data. The training set has records of 891 individuals and survival ground truth. The testing set has 418 records, and we are tasked with making a survival prediction for each individual.
 
 ## Features
+
+While this readme is geared towards building a neural network from scratch, it is important to highlight that all feature engineering and data cleaning must be performed prior to building and training the model. Is is also important that any cleaning steps and engineering must be applied to training, validation, and testing data uniformly.
+
 | Feature | Description |
 | ------ | ------ |
 | 'Survived' | Binary outcome of survival |
@@ -48,3 +51,37 @@ That is a the goal of the competition. We are given two csv files with missing a
 | 'Cabin' | If the individual had a cabin, what cabin was it? |
 | 'Has_Cabin' | Did the individual have a cabin? |
 | 'Title' | If the individual has a title preceding thier name; ranked by rarity |
+
+From the table, the last two variables I engineered. 
+
+'Has_Cabin' is a simple binary indicator (1 = has a cabin, 0 = no cabin)
+!['Has_Cabin' Lambda Function](Images/code2.png)
+
+'Title' was constructed by extracting the the characters at the start of each passengers name, and making a ranking scheme based on the rarity of the titles.
+For example 'Mr.' is very common, where the title 'Lord' signifies upper class land owners.
+![Title Extraction Code](Images/code1.png)
+
+Please refer to the code comments for the steps I took with cleaning and missing value imputation for the rest of the variables.
+
+# The Steps 
+After completion of preprocessing, we can break down the process of model construction into the following typical steps:
+- Dataset Constructor and Loading
+- Model Constructor
+- Training, Validation, and Tuning
+- Making Predictions on Test Data
+
+## Dataset Constructor and Loading
+
+Code for processing data samples can get messy and hard to maintain; we ideally want our dataset code to be decoupled from our model training code for better readability and modularity. PyTorch provides two data primitives: torch.utils.data.DataLoader and torch.utils.data.Dataset that allow you to use pre-loaded datasets as well as your own data. Dataset stores the samples and their corresponding labels, and DataLoader wraps an iterable around the Dataset to enable easy access to the samples. The dataset class constructor requires at a minimum the methods " __getitem__" and "__len__".
+
+![Dataset Constructor](Images/code3.png)
+
+Notice that we are also using SKLEARN to split our training data into testing and validation sets. The random seed can be any integer. It just ensures that results are reproducible, by maintaing the same starting position from a psuedo-random process. Test size specifies the proportion of the data we withhold for the model validation.
+
+After splitting the data, we create the data primitives 'DataLoader' after applying the Class constructor to our datasets.
+
+![Creating the data loaders](Images/code5.png)
+
+
+## Model Constructor
+
