@@ -67,6 +67,7 @@ Please refer to the code comments for the steps I took with cleaning and missing
 After completion of preprocessing, we can break down the process of model construction into the following typical steps:
 - Dataset Constructor and Loading
 - Model Constructor
+- Selecting Optimizer and Loss Metric
 - Training, Validation, and Tuning
 - Making Predictions on Test Data
 
@@ -96,3 +97,12 @@ Reminder: A neuron is a combination of a linear function and an activation
 Note how at the end of the constructor, we initialize the model with our desired specification. The number of neurons and hidden layers needs to be carefully tuned. Having too many neurons and layers can lead to extreme overfitting. Having too few will cause our paramter estimates to underfit. It is important to simultaneously train and validate to find the sweet spot. There is no perfect answer, and there is a lot of room for intuition. The model as specified takes the following form.
 
 ![Model Initialization](Images/Fig3.png)
+
+## Optimizer and Loss Function
+![Model Initialization](Images/code6.png)
+
+
+## Training the Model
+![Model Initialization](Images/cod7.png)
+
+## Predicting Results
