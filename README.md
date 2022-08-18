@@ -99,10 +99,15 @@ Note how at the end of the constructor, we initialize the model with our desired
 ![Model Initialization](Images/Fig3.png)
 
 ## Optimizer and Loss Function
-![Model Initialization](Images/code6.png)
-
+![Loss Function and Optimizer](Images/code6.png)
 
 ## Training the Model
-![Model Initialization](Images/cod7.png)
+![Training the Model](Images/code7.png)
+
+![Training Results](Images/Fig2.png)
 
 ## Predicting Results
+![Making Predictions](Images/code8.png)
+
+## Exporting for Submission
+![Exporting CSV for Submission](Images/code9.png)
